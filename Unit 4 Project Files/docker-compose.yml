@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+    container_name: northern_green_db
+    restart: always
+    environment:
+      POSTGRES_USER: ng_user
+      POSTGRES_PASSWORD: ng_password
+      POSTGRES_DB: ng_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+volumes:
+  pgdata:
